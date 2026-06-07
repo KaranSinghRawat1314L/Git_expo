@@ -221,3 +221,136 @@
 .repo-link:hover {
   text-decoration: underline;
 }
+/* ==========================================
+   RECENT SEARCHES
+========================================== */
+
+.recent-searches {
+  margin: 24px 0;
+}
+
+.recent-searches h3 {
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.recent-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.recent-chip {
+  background: var(--card);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.recent-chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   SORT DROPDOWN
+========================================== */
+
+.sort-container {
+  margin: 24px 0;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sort-container label {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.sort-container select {
+  background: var(--card);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  padding: 10px 12px;
+
+  cursor: pointer;
+}
+
+.sort-container select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ==========================================
+   LOAD MORE BUTTON
+========================================== */
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.load-more-btn {
+  background: var(--secondary);
+  color: white;
+
+  border: none;
+
+  padding: 12px 24px;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.load-more-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.load-more-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   ERROR BOX
+========================================== */
+
+.error-box {
+  background: rgba(248, 81, 73, 0.1);
+
+  border: 1px solid #f85149;
+
+  color: #f85149;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+}
