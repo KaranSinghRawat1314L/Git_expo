@@ -171,15 +171,51 @@ cd Git_expo
 
 ## Backend Setup
 
+### 1. Generate a GitHub Personal Access Token
+
+Go to:
+
+```text
+GitHub Settings
+→ Developer Settings
+→ Personal Access Tokens
+→ Tokens (Classic)
+→ Generate New Token
+```
+
+No additional scopes are required for public repository access.
+
+---
+
+### 2. Create Environment Variables
+
+Create a `.env` file inside the `backend` directory:
+
+```env
+PORT=5000
+FRONTEND_URL=http://localhost:5173
+GITHUB_TOKEN=your_github_personal_access_token
+```
+
+---
+
+### 3. Install Dependencies
+
 ```bash
 cd backend
 
 npm install
+```
 
+---
+
+### 4. Start Backend Server
+
+```bash
 node src/app.js
 ```
 
-Backend runs on:
+Backend runs at:
 
 ```text
 http://localhost:5000
