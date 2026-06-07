@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const githubRoutes = require("./routes/github.routes");
 
 const app = express();
+app.set("trust proxy", 1);
 app.use(morgan("dev"));
 app.use(
   cors({
