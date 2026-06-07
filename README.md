@@ -9,10 +9,10 @@ GitHub Repo Explorer is a full-stack web application that allows users to search
 ## Live Demo Links
 
 Frontend:
-not live yet
+https://git-expo-taupe.vercel.app/
 
 Backend:
-not live yet
+https://git-expo.onrender.com/
 
 ---
 
@@ -123,6 +123,41 @@ Handles:
 - Network failures
 
 ---
+# Environment Variables
+
+## Backend
+
+Create a `.env` file inside the backend directory:
+
+```env
+PORT=5000
+FRONTEND_URL=http://localhost:5173
+GITHUB_TOKEN=your_github_personal_access_token
+```
+
+### Variables
+
+| Variable     | Description                                                      |
+| ------------ | ---------------------------------------------------------------- |
+| PORT         | Backend server port                                              |
+| FRONTEND_URL | Allowed frontend origin for CORS                                 |
+| GITHUB_TOKEN | GitHub Personal Access Token used for authenticated API requests |
+
+---
+
+## Frontend
+
+Create a `.env` file inside the frontend directory:
+
+```env
+VITE_API_URL=http://localhost:5000/api/github
+```
+
+### Variables
+
+| Variable     | Description          |
+| ------------ | -------------------- |
+| VITE_API_URL | Backend API base URL |
 
 # How to Run Locally
 
@@ -172,7 +207,7 @@ http://localhost:5173
 
 # API Documentation
 
-## Search GitHub User
+## Search GitHub User 
 
 ### Endpoint
 
