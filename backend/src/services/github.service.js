@@ -1,14 +1,22 @@
+require("dotenv").config();
+
 const axios = require("axios");
 const cache = require("../cache/memoryCache");
 
-const GITHUB_BASE_URL = "https://api.github.com";
+const GITHUB_BASE_URL =
+  "https://api.github.com";
+
+const headers = {
+  Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+};
 
 async function getGithubUser(
   username,
   page = 1,
   perPage = 30
 ) {
-  const cacheKey = `github:${username}:${page}:${perPage}`;
+  const cacheKey =
+    `github:${username}:${page}:${perPage}`;
 
   const cachedData = cache.get(cacheKey);
 
@@ -23,13 +31,15 @@ async function getGithubUser(
     const profilePromise =
       page === 1
         ? axios.get(
-            `${GITHUB_BASE_URL}/users/${username}`
+            `${GITHUB_BASE_URL}/users/${username}`,
+            { headers }
           )
         : Promise.resolve(null);
 
     const reposPromise = axios.get(
       `${GITHUB_BASE_URL}/users/${username}/repos`,
       {
+        headers,
         params: {
           page,
           per_page: perPage,
@@ -43,8 +53,8 @@ async function getGithubUser(
         reposPromise,
       ]);
 
-    const repositories = repoResponse.data.map(
-      (repo) => ({
+    const repositories =
+      repoResponse.data.map((repo) => ({
         id: repo.id,
         name: repo.name,
         description: repo.description,
@@ -52,23 +62,29 @@ async function getGithubUser(
         language: repo.language,
         updatedAt: repo.updated_at,
         url: repo.html_url,
-      })
-    );
+      }));
 
     const response = {
       profile: profileResponse
         ? {
-            login: profileResponse.data.login,
-            name: profileResponse.data.name,
+            login:
+              profileResponse.data.login,
+            name:
+              profileResponse.data.name,
             avatarUrl:
-              profileResponse.data.avatar_url,
-            bio: profileResponse.data.bio,
+              profileResponse.data
+                .avatar_url,
+            bio:
+              profileResponse.data.bio,
             followers:
-              profileResponse.data.followers,
+              profileResponse.data
+                .followers,
             following:
-              profileResponse.data.following,
+              profileResponse.data
+                .following,
             publicRepos:
-              profileResponse.data.public_repos,
+              profileResponse.data
+                .public_repos,
           }
         : null,
 
@@ -88,11 +104,21 @@ async function getGithubUser(
       throw new Error("User not found");
     }
 
-    if (error.response?.status === 403) {
+    if (
+      error.response?.status === 403 &&
+      error.response?.headers[
+        "x-ratelimit-remaining"
+      ] === "0"
+    ) {
       throw new Error(
         "GitHub rate limit exceeded"
       );
     }
+
+    console.error(
+      "GitHub API Error:",
+      error.response?.data || error.message
+    );
 
     throw new Error(
       "Failed to fetch GitHub data"
