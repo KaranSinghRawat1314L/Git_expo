@@ -107,7 +107,7 @@ Sort repositories by:
 ### Backend Caching
 
 - Cache-Aside Pattern
-- 60-second cache TTL
+- 3 minutes cache TTL
 - Reduces GitHub API calls
 
 ### Rate Limiting
@@ -349,7 +349,7 @@ github:mvanhorn:1:30
 ### Cache Duration
 
 ```text
-60 seconds
+180 seconds
 ```
 
 ### Flow
