@@ -1,5 +1,5 @@
 class MemoryCache {
-  constructor(ttl = 60000) {
+  constructor(ttl = 180000) {
     this.cache = new Map();
     this.ttl = ttl;
   }
