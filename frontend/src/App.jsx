@@ -64,6 +64,7 @@ function RepoCard({ repo }) {
 
 function App() {
   const [username, setUsername] = useState("");
+  const [searchedUsername, setSearchedUsername] = useState("");
 
   const [profile, setProfile] = useState(null);
 
@@ -118,6 +119,8 @@ function App() {
 
       setHasMore(data.hasMore);
 
+      setSearchedUsername(searchUsername);
+
       const updatedSearches = [
         searchUsername,
         ...recentSearches.filter(
@@ -154,7 +157,7 @@ function App() {
 
       const response =
         await getGithubUser(
-          username,
+          searchedUsername,
           nextPage
         );
 
